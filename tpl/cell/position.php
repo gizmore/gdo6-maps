@@ -1,12 +1,11 @@
 <?php
 use GDO\Maps\GDO_Position;
 use GDO\Maps\Position;
-
 $field instanceof GDO_Position;
 $pos = $field->getValue(); $pos instanceof Position;
 if ($pos->empty())
 {
-	l('unknown');
+	echo t('unknown');
 }
 else
 {

@@ -5,7 +5,7 @@ $field instanceof GDO_Position;
 ?>
 <md-input-container
  class="md-block md-float md-icon-left<?= $field->classError(); ?>"
- flex ng-controller="GWFPositionCtrl"
+ flex ng-controller="GDOPositionCtrl"
  ng-init='init(<?= json_encode($field->initJSON()); ?>)'>
   <label for="form[<?= $field->name; ?>]"><?= $field->label; ?></label>
   <?= GDO_Icon::iconS('gps_fixed'); ?>
@@ -17,7 +17,6 @@ $field instanceof GDO_Position;
    <?= $field->htmlDisabled(); ?>/>
   <div class="gdo-form-error"><?= $field->error; ?></div>
   
-  <input type="hidden" name="form[<?= $field->name ?>_lat]" value="{{data.lat}}" />
-  <input type="hidden" name="form[<?= $field->name ?>_lng]" value="{{data.lng}}" />
+  <input type="hidden" name="form[<?= $field->name ?>]" value="[{{data.lat}},{{data.lng}}]" />
   
 </md-input-container>

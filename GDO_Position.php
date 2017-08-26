@@ -6,16 +6,18 @@ use GDO\Template\GDO_Template;
 use GDO\Type\GDO_Base;
 use GDO\Util\Common;
 use GDO\DB\WithDatabase;
+use GDO\Form\WithFormFields;
+use GDO\UI\WithLabel;
 
 final class GDO_Position extends GDO_Base
 {
+    use WithLabel;
     use WithDatabase;
+    use WithFormFields;
     
-	public function __construct()
-	{
-		$this->initial(null);
-	}
-	
+	##########
+	### DB ###
+	##########
 	public function blankData()
 	{
 		return array(
@@ -46,32 +48,29 @@ final class GDO_Position extends GDO_Base
 	#############
 	### Value ###
 	#############
-// 	public function value($value)
-// 	{
-// 		$this->value = $value === null ? [null, null] : $value;
-// 	}
+	public function toValue($var)
+	{
+	    $coords = $var ? json_decode($var) : [null, null];
+	    return new Position($coords[0], $coords[1]);
+	}
 	
-// 	public function initial($initial)
-// 	{
-// 		$this->initial = $initial === null ? [null, null] : $initial;
-// 		return $this;
-// 	}
-
+	public function toVar($value)
+	{
+	    return json_encode([$value->getLat(), $value->getLng()]);
+	}
+	
+	public function initialLatLng(float $lat, float $lng)
+	{
+	    return parent::initial("[$lat,$lng]");
+	}
+	
 	public function getLat()
 	{
-		return $this->gdo->getVar($this->name.'_lat');
+	    return $this->getValue()->getLat();
 	}
-
 	public function getLng()
 	{
-		return $this->gdo->getVar($this->name.'_lng');
-	}
-	
-	public function getValue()
-	{
-		return $this->gdo ?
-			new Position($this->getLat(), $this->getLng()) :
-			new Position($this->formLat(), $this->formLng());
+	    return $this->getValue()->getLng();
 	}
 	
 	public function getGDOData()
@@ -82,14 +81,22 @@ final class GDO_Position extends GDO_Base
 		);
 	}
 	
+	public function setGDOData(GDO $gdo=null)
+	{
+	    $lat = $gdo->getVar("{$this->name}_lat");
+	    $lng = $gdo->getVar("{$this->name}_lng");
+	    return $lat && $lng ? $this->var("[$lat,$lng]") : $this->var(null);
+	}
+	
+	
 	##############
 	### Render ###
 	##############
 	public function initJSON()
 	{
 		return array(
-			'lat' => $this->formLat(),
-			'lng' => $this->formLng(),
+			'lat' => $this->getLat(),
+			'lng' => $this->getLng(),
 			'defaultCurrent' => $this->defaultCurrent,
 		);
 	}
@@ -105,53 +112,13 @@ final class GDO_Position extends GDO_Base
 	##################
 	### Validation ###
 	##################
-	public function formLat()
+	public function validate($value)
 	{
-		$vars = Common::getRequestArray('form', []);
-		if (isset($vars["{$this->name}_lat"]))
-		{
-			$var = trim($vars["{$this->name}_lat"]);
-			return empty($var) ? null : $var;
-		}
-		return $this->value[0] ? $this->value[0] : $this->initial[0];
-	}
-	
-	public function formLng()
-	{
-		$vars = Common::getRequestArray('form', []);
-		if (isset($vars["{$this->name}_lng"]))
-		{
-			$var = trim($vars["{$this->name}_lng"]);
-			return empty($var) ? null : $var;
-		}
-		return $this->value[1] ? $this->value[1] : $this->initial[1];
-	}
-	
-	public function formValidate(GDO_Form $form)
-	{
-		if ($this->validatorsValidate($form))
-		{
-			$lat = $this->formLat();
-			$lng = $this->formLng();
-			if ( (($lat === null)||($lng === null)) && (!$this->null) )
-			{
-				return $this->error('err_is_null', [$this->name]);
-			}
-			if ( ($lat < -90) || ($lat > 90) )
-			{
-				return $this->error('err_lat', [$this->name]);
-			}
-			if ( ($lng < -180) || ($lng > 180) )
-			{
-				return $this->error('err_lng', [$this->name]);
-			}
-			
-			# Add to form
-			$this->oldValue = $this->value;
-			$this->value = [$lat, $lng];
-			$form->addValue($this->name.'_lat', $lat);
-			$form->addValue($this->name.'_lng', $lng);
-			return true;
-		}
+	    if ($value === null)
+	    {
+	        return $this->notNull ? $this->errorNotNull() : true;
+	    }
+	    
+	    return true;
 	}
 }
