@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Maps;
 
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\Net\GDT_Url;
 use GDO\Template\GDT_Bar;
 use GDO\Template\GDT_Template;
@@ -16,7 +16,7 @@ use GDO\Util\Javascript;
  * @since 4.0
  * @version 5.0
  */
-final class Module_Maps extends Module
+final class Module_Maps extends GDO_Module
 {
 	public $module_priority = 45;
 	

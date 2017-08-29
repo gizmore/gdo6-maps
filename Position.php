@@ -25,10 +25,10 @@ final class Position
 	/**
 	 * http://assemblysys.com/geographical-distance-calculation-in-php/
 	 *
-	 * @param unknown $point1_lat
-	 * @param unknown $point1_long
-	 * @param unknown $point2_lat
-	 * @param unknown $point2_long
+	 * @param float $point1_lat
+	 * @param float $point1_long
+	 * @param float $point2_lat
+	 * @param float $point2_long
 	 * @param string $unit
 	 * @param number $decimals
 	 * @return float
