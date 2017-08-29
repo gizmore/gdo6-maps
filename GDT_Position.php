@@ -1,15 +1,15 @@
 <?php
 namespace GDO\Maps;
 use GDO\DB\GDO;
-use GDO\Form\GDO_Form;
-use GDO\Template\GDO_Template;
-use GDO\Type\GDO_Base;
+use GDO\Form\GDT_Form;
+use GDO\Template\GDT_Template;
+use GDO\Type\GDT_Base;
 use GDO\Util\Common;
 use GDO\DB\WithDatabase;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
 
-final class GDO_Position extends GDO_Base
+final class GDT_Position extends GDT_Base
 {
     use WithLabel;
     use WithDatabase;
@@ -102,11 +102,11 @@ final class GDO_Position extends GDO_Base
 	}
 	public function renderForm()
 	{
-		return GDO_Template::php('Maps', 'form/position.php', ['field' => $this]);
+		return GDT_Template::php('Maps', 'form/position.php', ['field' => $this]);
 	}
 	public function renderCell()
 	{
-		return GDO_Template::php('Maps', 'cell/position.php', ['field' => $this]);
+		return GDT_Template::php('Maps', 'cell/position.php', ['field' => $this]);
 	}
 	
 	##################

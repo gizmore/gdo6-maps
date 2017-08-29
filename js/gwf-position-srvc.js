@@ -23,7 +23,7 @@ service('GDOPositionSrvc', function($q, $rootScope, GDOLoadingSrvc) {
 	
 	PositionSrvc.INTERVAL = null;
 	
-	window.GDO_POSITION = PositionSrvc.CURRENT = {
+	window.GDT_POSITION = PositionSrvc.CURRENT = {
 			latlng: null,   // google maps
 			position: { coords: { latitude: null, longitude: null} }, // browser
 			patch: { lat: null, lng: null },

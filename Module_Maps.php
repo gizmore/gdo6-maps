@@ -2,16 +2,16 @@
 namespace GDO\Maps;
 
 use GDO\Core\Module;
-use GDO\Net\GDO_Url;
-use GDO\Template\GDO_Bar;
-use GDO\Template\GDO_Template;
-use GDO\Type\GDO_Checkbox;
-use GDO\Type\GDO_Secret;
+use GDO\Net\GDT_Url;
+use GDO\Template\GDT_Bar;
+use GDO\Template\GDT_Template;
+use GDO\Type\GDT_Checkbox;
+use GDO\Type\GDT_Secret;
 use GDO\Util\Javascript;
 /**
  * Maps API helper.
  * 
- * @see GDO_Postion - A geolocation GDO_Base.
+ * @see GDT_Postion - A geolocation GDT_Base.
  * @author gizmore
  * @since 4.0
  * @version 5.0
@@ -25,8 +25,8 @@ final class Module_Maps extends Module
 	public function getConfig()
 	{
 		return array(
-			GDO_Secret::make('maps_api_key')->max(64)->initial('AIzaSyBrEK28--B1PaUlvpHXB-4MzQlUjNPBez0'),
-			GDO_Checkbox::make('maps_sensors')->initial('1'),
+			GDT_Secret::make('maps_api_key')->max(64)->initial('AIzaSyBrEK28--B1PaUlvpHXB-4MzQlUjNPBez0'),
+			GDT_Checkbox::make('maps_sensors')->initial('1'),
 		);
 	}
 	public function cfgApiKey() { return $this->getConfigValue('maps_api_key'); }
@@ -45,7 +45,7 @@ final class Module_Maps extends Module
 	
 	public function googleMapsScriptURL()
 	{
-		$protocol = GDO_Url::protocol();
+		$protocol = GDT_Url::protocol();
 		$sensors = $this->cfgSensors() ? 'true' : 'false';
 		$apikey = $this->cfgApiKey();
 		if (!empty($apikey))
@@ -58,9 +58,9 @@ final class Module_Maps extends Module
 	###############
 	### Sidebar ###
 	###############
-	public function hookRightBar(GDO_Bar $navbar)
+	public function hookRightBar(GDT_Bar $navbar)
 	{
-    	$navbar->addField(GDO_Template::make()->template('Maps', 'maps-navbar.php'));
+    	$navbar->addField(GDT_Template::make()->template('Maps', 'maps-navbar.php'));
 	}
 	
 }

@@ -1,7 +1,7 @@
 <?php
-use GDO\Maps\GDO_Position;
+use GDO\Maps\GDT_Position;
 use GDO\Maps\Position;
-$field instanceof GDO_Position;
+$field instanceof GDT_Position;
 $pos = $field->getValue(); $pos instanceof Position;
 if ($pos->empty())
 {

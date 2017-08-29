@@ -1,14 +1,14 @@
 <?php
-use GDO\Maps\GDO_Position;
-use GDO\UI\GDO_Icon;
-$field instanceof GDO_Position;
+use GDO\Maps\GDT_Position;
+use GDO\UI\GDT_Icon;
+$field instanceof GDT_Position;
 ?>
 <md-input-container
  class="md-block md-float md-icon-left<?= $field->classError(); ?>"
  flex ng-controller="GDOPositionCtrl"
  ng-init='init(<?= json_encode($field->initJSON()); ?>)'>
   <label for="form[<?= $field->name; ?>]"><?= $field->label; ?></label>
-  <?= GDO_Icon::iconS('gps_fixed'); ?>
+  <?= GDT_Icon::iconS('gps_fixed'); ?>
   <input
    ng-click="onPick()"
    type="text"
