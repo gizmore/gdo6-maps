@@ -35,11 +35,14 @@ final class Module_Maps extends GDO_Module
 	public function onIncludeScripts()
 	{
 		Javascript::addJavascript($this->googleMapsScriptURL());
-		$this->addJavascript('js/gwf-location-bar-ctrl.js');
-		$this->addJavascript('js/gwf-location-picker.js');
-		$this->addJavascript('js/gwf-map-util.js');
-		$this->addJavascript('js/gwf-position-ctrl.js');
-		$this->addJavascript('js/gwf-position-srvc.js');
+		if (module_enabled('GWFAngular'))
+		{
+		    $this->addJavascript('js/gwf-location-bar-ctrl.js');
+    		$this->addJavascript('js/gwf-location-picker.js');
+    		$this->addJavascript('js/gwf-map-util.js');
+    		$this->addJavascript('js/gwf-position-ctrl.js');
+    		$this->addJavascript('js/gwf-position-srvc.js');
+		}
 		$this->addCSS('css/gwf-maps.css');
 	}
 	
