@@ -17,6 +17,6 @@ $field instanceof GDT_Position;
    <?= $field->htmlDisabled(); ?>/>
   <div class="gdo-form-error"><?= $field->error; ?></div>
   
-  <input type="hidden" name="form[<?= $field->name ?>]" value="[{{data.lat}},{{data.lng}}]" />
+  <input id="gdo_pos_<?= $field->name; ?>" type="hidden" name="form[<?= $field->name ?>]" value="[{{data.lat}},{{data.lng}}]" />
   
 </md-input-container>
