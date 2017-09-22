@@ -4,11 +4,13 @@ service('GDOLocationPicker', function($q, $mdDialog, GDOMapUtil) {
 	
 	var LocationPicker = this;
 	
-	LocationPicker.open = function(text, initPosition) {
+	LocationPicker.open = function(initPosition, text) {
 
 		var defer = $q.defer();
 		
-		function DialogController($scope, $mdDialog, text, initPosition) {
+		function DialogController($scope, $mdDialog, initPosition, text) {
+			
+			console.log('DialogController()', initPosition);
 			$scope.data = {
 				marker: null,
 				initPosition: initPosition,
@@ -29,23 +31,30 @@ service('GDOLocationPicker', function($q, $mdDialog, GDOMapUtil) {
 				defer.reject();
 			};
 			$scope.clicked = function(event) {
+				$scope.setMarker(event.latLng);
+			};
+			
+			$scope.setMarker = function(latLng) {
 				if (!$scope.data.marker) {
 					$scope.data.marker = new google.maps.Marker({
-						position: event.latLng,
+						position: latLng,
 						map: $scope.data.map,
-						title: 'Your position',
-						label: 'Your Position',
+						title: $scope.data.text||'Your Position',
+						label: $scope.data.text||'Your Position',
 						draggable: true,
 					});
-					$scope.data.map.setCenter(event.latLng);
+					$scope.data.map.setCenter(latLng);
 				}
-				$scope.data.marker.setPosition(event.latLng);
+				$scope.data.marker.setPosition(latLng);
 			};
 			
 			setTimeout(function() {
 				if (!$scope.data.map) {
 					$scope.data.map = GDOMapUtil.map('gdo-dialog-map');
 					$scope.data.map.addListener('click', $scope.clicked);
+					if ($scope.data.initPosition) {
+						$scope.setMarker($scope.data.initPosition);
+					}
 				}
 			}, 1);
 		}

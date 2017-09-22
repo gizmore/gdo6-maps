@@ -41,7 +41,9 @@ controller('GDOPositionCtrl', function($scope, GDOPositionSrvc, GDOLocationPicke
 	//////////
 	$scope.onPick = function() {
 		console.log('GDOPositionCtrl.onPick()');
-		GDOLocationPicker.open().then($scope.locationPicked, $scope.locationNotPicked);
+		
+		var position = $scope.data.lat ? new google.maps.LatLng({lat:$scope.data.lat, lng:$scope.data.lng}) : null;
+		GDOLocationPicker.open(position).then($scope.locationPicked, $scope.locationNotPicked);
 	};
 	
 	$scope.locationPicked = function(latlng) {

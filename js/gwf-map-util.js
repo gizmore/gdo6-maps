@@ -54,8 +54,7 @@ service('GDOMapUtil', function() {
 	};
 	
 	MapUtil.map = function(id) {
-		var canvas = MapUtil.canvas(id);
-		return new google.maps.Map(canvas, MapUtil.OPTIONS);
+		return new google.maps.Map(MapUtil.canvas(id), MapUtil.OPTIONS);
 	};
 
 	MapUtil.middle = function(points) {
