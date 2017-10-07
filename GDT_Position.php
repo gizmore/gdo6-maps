@@ -1,6 +1,6 @@
 <?php
 namespace GDO\Maps;
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\Form\GDT_Form;
 use GDO\Template\GDT_Template;
 use GDO\Type\GDT_Base;
