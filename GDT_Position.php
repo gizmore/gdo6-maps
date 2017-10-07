@@ -2,14 +2,14 @@
 namespace GDO\Maps;
 use GDO\Core\GDO;
 use GDO\Form\GDT_Form;
-use GDO\Template\GDT_Template;
-use GDO\Type\GDT_Base;
+use GDO\Core\GDT_Template;
+use GDO\Core\GDT;
 use GDO\Util\Common;
 use GDO\DB\WithDatabase;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
 
-final class GDT_Position extends GDT_Base
+final class GDT_Position extends GDT
 {
     use WithLabel;
     use WithDatabase;
@@ -39,7 +39,7 @@ final class GDT_Position extends GDT_Base
 	### Current Position ###
 	########################
 	public $defaultCurrent = false;
-	public function defaultCurrent(bool $defaultCurrent=true)
+	public function defaultCurrent($defaultCurrent=true)
 	{
 		$this->defaultCurrent = $defaultCurrent;
 		return $this;
@@ -59,7 +59,7 @@ final class GDT_Position extends GDT_Base
 	    return json_encode([$value->getLat(), $value->getLng()]);
 	}
 	
-	public function initialLatLng(float $lat, float $lng)
+	public function initialLatLng($lat, $lng)
 	{
 	    return parent::initial("[$lat,$lng]");
 	}

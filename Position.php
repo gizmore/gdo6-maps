@@ -4,13 +4,13 @@ final class Position
 {
 	private $lat, $lng;
 	
-	public function __construct(float $lat=null, float $lng=null)
+	public function __construct($lat=null, $lng=null)
 	{
 		$this->lat = $lat;
 		$this->lng = $lng;
 	}
 	
-	public function empty() { return $this->lat === null || $this->lng === null; }
+	public function isEmpty() { return $this->lat === null || $this->lng === null; }
 	public function getLat() { return $this->lat; }
 	public function getLng() { return $this->lng; }
 	public function displayLat() { return $this->lat . ($this->lat >= 0 ? '°N' : '°S'); }

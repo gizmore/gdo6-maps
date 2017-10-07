@@ -3,15 +3,15 @@ namespace GDO\Maps;
 
 use GDO\Core\GDO_Module;
 use GDO\Net\GDT_Url;
-use GDO\Template\GDT_Bar;
-use GDO\Template\GDT_Template;
-use GDO\Type\GDT_Checkbox;
-use GDO\Type\GDT_Secret;
+use GDO\UI\GDT_Bar;
+use GDO\Core\GDT_Template;
+use GDO\DB\GDT_Checkbox;
+use GDO\Core\GDT_Secret;
 use GDO\Util\Javascript;
 /**
  * Maps API helper.
  * 
- * @see GDT_Postion - A geolocation GDT_Base.
+ * @see GDT_Postion - A geolocation GDT.
  * @author gizmore
  * @since 4.0
  * @version 5.0

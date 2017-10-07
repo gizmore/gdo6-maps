@@ -3,7 +3,7 @@ use GDO\Maps\GDT_Position;
 use GDO\Maps\Position;
 $field instanceof GDT_Position;
 $pos = $field->getValue(); $pos instanceof Position;
-if ($pos->empty())
+if ($pos->isEmpty())
 {
 	echo t('unknown');
 }
