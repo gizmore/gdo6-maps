@@ -15,8 +15,7 @@ $field instanceof GDT_Position;
    ng-model="data.display"
    <?= $field->htmlRequired(); ?>
    <?= $field->htmlDisabled(); ?>/>
-  <div class="gdo-form-error"><?= $field->error; ?></div>
-  
+  <?= $field->htmlError(); ?>
   <input id="gdo_pos_<?= $field->name; ?>" type="hidden" name="form[<?= $field->name ?>]" value="[{{data.lat}},{{data.lng}}]" />
   
 </md-input-container>
