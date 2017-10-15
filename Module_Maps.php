@@ -35,7 +35,7 @@ final class Module_Maps extends GDO_Module
 	public function onIncludeScripts()
 	{
 		Javascript::addJavascript($this->googleMapsScriptURL());
-		if (module_enabled('GWFAngular'))
+		if (module_enabled('Angular'))
 		{
 		    $this->addJavascript('js/gwf-location-bar-ctrl.js');
     		$this->addJavascript('js/gwf-location-picker.js');
