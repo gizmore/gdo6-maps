@@ -46,7 +46,7 @@ final class Module_Maps extends GDO_Module
 		$this->addCSS('css/gwf-maps.css');
 	}
 	
-	public function googleMapsScriptURL()
+	private function googleMapsScriptURL()
 	{
 		$protocol = GDT_Url::protocol();
 		$sensors = $this->cfgSensors() ? 'true' : 'false';
