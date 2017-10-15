@@ -63,7 +63,10 @@ final class Module_Maps extends GDO_Module
 	###############
 	public function hookRightBar(GDT_Bar $navbar)
 	{
-    	$navbar->addField(GDT_Template::make()->template('Maps', 'maps-navbar.php'));
+		if (module_enabled('Angular'))
+		{
+			$navbar->addField(GDT_Template::make()->template('Maps', 'maps-navbar.php'));
+		}
 	}
 	
 }
