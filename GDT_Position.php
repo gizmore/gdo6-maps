@@ -1,10 +1,8 @@
 <?php
 namespace GDO\Maps;
 use GDO\Core\GDO;
-use GDO\Form\GDT_Form;
 use GDO\Core\GDT_Template;
 use GDO\Core\GDT;
-use GDO\Util\Common;
 use GDO\DB\WithDatabase;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
@@ -88,6 +86,12 @@ final class GDT_Position extends GDT
 	    return $lat && $lng ? $this->val("[$lat,$lng]") : $this->val(null);
 	}
 	
+// 	public function getVar()
+// 	{
+// 		$lat = $this->getRequestVar('form', $this->gdo->getVar("{$this->name}_lat"), "{$this->name}_lat");
+// 		$lng = $this->getRequestVar('form', $this->gdo->getVar("{$this->name}_lng"), "{$this->name}_lng");
+// 		return sprintf('[%f,%f]', $lat, $lng);
+// 	}
 	
 	##############
 	### Render ###
