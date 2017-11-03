@@ -26,12 +26,16 @@ final class Module_Maps extends GDO_Module
 	{
 		return array(
 			GDT_Secret::make('maps_api_key')->max(64)->initial('AIzaSyBrEK28--B1PaUlvpHXB-4MzQlUjNPBez0'),
-			GDT_Checkbox::make('maps_sensors')->initial('1'),
+			GDT_Checkbox::make('maps_sensors')->initial('0'),
+			GDT_Checkbox::make('maps_record')->initial('0'),
+			GDT_Checkbox::make('maps_sidebar')->initial('0'),
 		);
 	}
 	public function cfgApiKey() { return $this->getConfigValue('maps_api_key'); }
 	public function cfgSensors() { return $this->getConfigValue('maps_sensors'); }
-
+	public function cfgRecord() { return $this->getConfigValue('maps_record'); }
+	public function cfgSidebar() { return $this->getConfigValue('maps_sidebar'); }
+	
 	public function onIncludeScripts()
 	{
 		Javascript::addJavascript($this->googleMapsScriptURL());
@@ -42,6 +46,11 @@ final class Module_Maps extends GDO_Module
     		$this->addJavascript('js/gwf-map-util.js');
     		$this->addJavascript('js/gwf-position-ctrl.js');
     		$this->addJavascript('js/gwf-position-srvc.js');
+    		
+    		if ($this->cfgRecord())
+    		{
+    			$this->addJavascript('js/gdo-record-location.js');
+    		}
 		}
 		$this->addCSS('css/gwf-maps.css');
 	}
@@ -63,9 +72,25 @@ final class Module_Maps extends GDO_Module
 	###############
 	public function hookRightBar(GDT_Bar $navbar)
 	{
-		if (module_enabled('Angular'))
+		if ($this->cfgSidebar())
 		{
-			$navbar->addField(GDT_Template::make()->template('Maps', 'maps-navbar.php'));
+			if (module_enabled('Angular'))
+			{
+				$navbar->addField(GDT_Template::make()->template('Maps', 'maps-navbar.php'));
+			}
+		}
+	}
+	
+	#################
+	### Recording ###
+	#################
+	public function getUserConfig()
+	{
+		if ($this->cfgRecord())
+		{
+			return array(
+				GDT_Position::make('user_position'),
+			);
 		}
 	}
 	
