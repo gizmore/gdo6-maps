@@ -48,6 +48,10 @@ final class GDT_Position extends GDT
 	#############
 	### Value ###
 	#############
+	public function getVar()
+	{
+		return parent::getVar();
+	}
 	public function toValue($var)
 	{
 	    $coords = $var ? json_decode($var) : [null, null];
@@ -85,15 +89,8 @@ final class GDT_Position extends GDT
 	{
 	    $lat = $gdo->getVar("{$this->name}_lat");
 	    $lng = $gdo->getVar("{$this->name}_lng");
-	    return $lat && $lng ? $this->val("[$lat,$lng]") : $this->val(null);
+	    return ($lat && $lng) ? $this->val("[$lat,$lng]") : $this->val(null);
 	}
-	
-// 	public function getVar()
-// 	{
-// 		$lat = $this->getRequestVar('form', $this->gdo->getVar("{$this->name}_lat"), "{$this->name}_lat");
-// 		$lng = $this->getRequestVar('form', $this->gdo->getVar("{$this->name}_lng"), "{$this->name}_lng");
-// 		return sprintf('[%f,%f]', $lat, $lng);
-// 	}
 	
 	##############
 	### Render ###
