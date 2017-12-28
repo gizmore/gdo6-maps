@@ -6,12 +6,14 @@ use GDO\Core\GDT;
 use GDO\DB\WithDatabase;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
+use GDO\UI\WithIcon;
 
 final class GDT_Position extends GDT
 {
     use WithLabel;
     use WithDatabase;
     use WithFormFields;
+    use WithIcon;
     
 	##########
 	### DB ###

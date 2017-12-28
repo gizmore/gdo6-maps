@@ -3,19 +3,17 @@ use GDO\Maps\GDT_Position;
 use GDO\UI\GDT_Icon;
 $field instanceof GDT_Position;
 ?>
-<md-input-container
- class="md-block md-float md-icon-left<?= $field->classError(); ?>"
- flex ng-controller="GDOPositionCtrl"
- ng-init='init(<?= json_encode($field->initJSON()); ?>)'>
+<?php /** @var $field \GDO\DB\GDT_String **/ ?>
+<div class="gdo-container<?= $field->classError(); ?>">
   <label for="form[<?= $field->name; ?>]"><?= $field->label; ?></label>
-  <?= GDT_Icon::iconS('gps_fixed'); ?>
+  <?= $field->htmlIcon(); ?>
   <input
-   ng-click="onPick()"
    type="text"
-   ng-model="data.display"
-   <?= $field->htmlRequired(); ?>
-   <?= $field->htmlDisabled(); ?>/>
+   <?=$field->htmlID()?>
+   <?=$field->htmlRequired()?>
+   <?=$field->htmlDisabled()?>
+   size="12"
+   name="form[<?=$field->name?>]"
+   value="<?= $field->displayVar(); ?>" />
   <?= $field->htmlError(); ?>
-  <input id="gdo_pos_<?= $field->name; ?>" type="hidden" name="form[<?= $field->name ?>]" value="[{{data.lat}},{{data.lng}}]" />
-  
-</md-input-container>
+</div>
