@@ -48,10 +48,6 @@ final class GDT_Position extends GDT
 	#############
 	### Value ###
 	#############
-	public function getVar()
-	{
-		return parent::getVar();
-	}
 	public function toValue($var)
 	{
 	    $coords = $var ? json_decode($var) : [null, null];
