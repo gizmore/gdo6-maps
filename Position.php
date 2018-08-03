@@ -53,7 +53,7 @@ final class Position
 	
 	
 	/**
-	 * Build an sql select query for calculating distance.
+	 * Build an sql select query for calculating distance in km.
 	 *
 	 * http://stackoverflow.com/questions/1006654/fastest-way-to-find-distance-between-two-lat-long-points
 	 *
