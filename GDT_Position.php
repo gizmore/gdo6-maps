@@ -10,11 +10,11 @@ use GDO\UI\WithIcon;
 
 final class GDT_Position extends GDT
 {
-    use WithLabel;
-    use WithDatabase;
-    use WithFormFields;
-    use WithIcon;
-    
+	use WithLabel;
+	use WithDatabase;
+	use WithFormFields;
+	use WithIcon;
+	
 	##########
 	### DB ###
 	##########
@@ -50,27 +50,27 @@ final class GDT_Position extends GDT
 	#############
 	public function toValue($var)
 	{
-	    $coords = $var ? json_decode($var) : [null, null];
-	    return new Position($coords[0], $coords[1]);
+		$coords = $var ? json_decode($var) : [null, null];
+		return new Position($coords[0], $coords[1]);
 	}
 	
 	public function toVar($value)
 	{
-	    return json_encode([$value->getLat(), $value->getLng()]);
+		return json_encode([$value->getLat(), $value->getLng()]);
 	}
 	
 	public function initialLatLng($lat, $lng)
 	{
-	    return parent::initial("[$lat,$lng]");
+		return parent::initial("[$lat,$lng]");
 	}
 	
 	public function getLat()
 	{
-	    return $this->getValue()->getLat();
+		return $this->getValue()->getLat();
 	}
 	public function getLng()
 	{
-	    return $this->getValue()->getLng();
+		return $this->getValue()->getLng();
 	}
 	
 	public function getGDOData()
@@ -83,9 +83,9 @@ final class GDT_Position extends GDT
 	
 	public function setGDOData(GDO $gdo=null)
 	{
-	    $lat = $gdo->getVar("{$this->name}_lat");
-	    $lng = $gdo->getVar("{$this->name}_lng");
-	    return ($lat && $lng) ? $this->val("[$lat,$lng]") : $this->val(null);
+		$lat = $gdo->getVar("{$this->name}_lat");
+		$lng = $gdo->getVar("{$this->name}_lng");
+		return ($lat && $lng) ? $this->val("[$lat,$lng]") : $this->val(null);
 	}
 	
 	##############
@@ -113,11 +113,11 @@ final class GDT_Position extends GDT
 	##################
 	public function validate($value)
 	{
-	    if ($value === null)
-	    {
-	        return $this->notNull ? $this->errorNotNull() : true;
-	    }
-	    
-	    return true;
+		if ($value === null)
+		{
+			return $this->notNull ? $this->errorNotNull() : true;
+		}
+		
+		return true;
 	}
 }

@@ -41,16 +41,16 @@ final class Module_Maps extends GDO_Module
 		Javascript::addJavascript($this->googleMapsScriptURL());
 		if (module_enabled('Angular'))
 		{
-		    $this->addJavascript('js/gwf-location-bar-ctrl.js');
-    		$this->addJavascript('js/gwf-location-picker.js');
-    		$this->addJavascript('js/gwf-map-util.js');
-    		$this->addJavascript('js/gwf-position-ctrl.js');
-    		$this->addJavascript('js/gwf-position-srvc.js');
-    		
-    		if ($this->cfgRecord())
-    		{
-    			$this->addJavascript('js/gdo-record-location.js');
-    		}
+			$this->addJavascript('js/gwf-location-bar-ctrl.js');
+			$this->addJavascript('js/gwf-location-picker.js');
+			$this->addJavascript('js/gwf-map-util.js');
+			$this->addJavascript('js/gwf-position-ctrl.js');
+			$this->addJavascript('js/gwf-position-srvc.js');
+			
+			if ($this->cfgRecord())
+			{
+				$this->addJavascript('js/gdo-record-location.js');
+			}
 		}
 		$this->addCSS('css/gwf-maps.css');
 	}
