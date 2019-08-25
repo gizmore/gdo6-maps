@@ -15,6 +15,8 @@ final class GDT_Position extends GDT
 	use WithFormFields;
 	use WithIcon;
 	
+	public function defaultLabel() { return $this->label('position'); }
+	
 	##########
 	### DB ###
 	##########
