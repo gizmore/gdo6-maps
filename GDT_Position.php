@@ -87,7 +87,7 @@ final class GDT_Position extends GDT
 	{
 		$lat = $gdo->getVar("{$this->name}_lat");
 		$lng = $gdo->getVar("{$this->name}_lng");
-		return ($lat && $lng) ? $this->val("[$lat,$lng]") : $this->val(null);
+		return ($lat && $lng) ? $this->var("[$lat,$lng]") : $this->var(null);
 	}
 	
 	##############
