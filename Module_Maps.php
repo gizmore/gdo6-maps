@@ -3,18 +3,19 @@ namespace GDO\Maps;
 
 use GDO\Core\GDO_Module;
 use GDO\Net\GDT_Url;
-use GDO\UI\GDT_Bar;
 use GDO\Core\GDT_Template;
 use GDO\DB\GDT_Checkbox;
 use GDO\Core\GDT_Secret;
 use GDO\Util\Javascript;
+use GDO\UI\GDT_Page;
+
 /**
  * Maps API helper.
  * 
  * @see GDT_Postion - A geolocation GDT.
  * @author gizmore
+ * @version 6.10
  * @since 4.0
- * @version 5.0
  */
 final class Module_Maps extends GDO_Module
 {
@@ -67,20 +68,6 @@ final class Module_Maps extends GDO_Module
 		return sprintf('%s://maps.google.com/maps/api/js?sensors=%s%s', $protocol, $sensors, $apikey);
 	}
 	
-	###############
-	### Sidebar ###
-	###############
-	public function hookRightBar(GDT_Bar $navbar)
-	{
-		if ($this->cfgSidebar())
-		{
-			if (module_enabled('Angular'))
-			{
-				$navbar->addField(GDT_Template::make()->template('Maps', 'maps-navbar.php'));
-			}
-		}
-	}
-	
 	#################
 	### Recording ###
 	#################
@@ -92,6 +79,21 @@ final class Module_Maps extends GDO_Module
 				GDT_Position::make('user_position'),
 			);
 		}
+	}
+	
+	############
+	### Init ###
+	############
+	public function onInitSidebar()
+	{
+// 	    if ($this->cfgSidebar())
+	    {
+	        if (module_enabled('Angular'))
+	        {
+	            $navbar = GDT_Page::$INSTANCE->rightNav;
+	            $navbar->addField(GDT_Template::make()->template('Maps', 'maps-navbar.php'));
+	        }
+	    }
 	}
 	
 }
