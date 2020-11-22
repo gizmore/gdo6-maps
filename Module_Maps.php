@@ -26,7 +26,7 @@ final class Module_Maps extends GDO_Module
 	public function getConfig()
 	{
 		return array(
-			GDT_Secret::make('maps_api_key')->max(64)->initial('AIzaSyBrEK28--B1PaUlvpHXB-4MzQlUjNPBez0'),
+			GDT_Secret::make('maps_api_key')->max(64)->initial(),
 			GDT_Checkbox::make('maps_sensors')->initial('0'),
 			GDT_Checkbox::make('maps_record')->initial('0'),
 			GDT_Checkbox::make('maps_sidebar')->initial('0'),
