@@ -1,5 +1,6 @@
 <?php
 namespace GDO\Maps;
+
 use GDO\Core\GDO;
 use GDO\Core\GDT_Template;
 use GDO\Core\GDT;
@@ -8,6 +9,13 @@ use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
 use GDO\UI\WithIcon;
 
+/**
+ * Lat/Lng position GDT.
+ * Adds two columns to a database table.
+ * @author gizmore
+ * @version 6.10
+ * @since 6.02
+ */
 final class GDT_Position extends GDT
 {
 	use WithLabel;
@@ -22,10 +30,17 @@ final class GDT_Position extends GDT
 	##########
 	public function blankData()
 	{
-		return array(
-			"{$this->name}_lat" => $this->initial[0],
-			"{$this->name}_lng" => $this->initial[1],
-		);
+	    if ($this->initial === null)
+	    {
+	        return [
+    			"{$this->name}_lat" => null,
+    			"{$this->name}_lng" => null,
+	        ];
+	    }
+	    return [
+	        "{$this->name}_lat" => $this->initial[0],
+	        "{$this->name}_lng" => $this->initial[1],
+        ];
 	}
 		
 	public function gdoColumnDefine()
@@ -122,4 +137,5 @@ final class GDT_Position extends GDT
 		
 		return true;
 	}
+
 }
