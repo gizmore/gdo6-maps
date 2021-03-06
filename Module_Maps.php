@@ -8,6 +8,7 @@ use GDO\DB\GDT_Checkbox;
 use GDO\Core\GDT_Secret;
 use GDO\Util\Javascript;
 use GDO\UI\GDT_Page;
+use GDO\Core\Application;
 
 /**
  * Maps API helper.
@@ -26,12 +27,14 @@ final class Module_Maps extends GDO_Module
 	public function getConfig()
 	{
 		return array(
+		    GDT_Checkbox::make('maps_api_google')->initial('1'),
 			GDT_Secret::make('maps_api_key')->max(64)->initial(),
 			GDT_Checkbox::make('maps_sensors')->initial('0'),
 			GDT_Checkbox::make('maps_record')->initial('0'),
 			GDT_Checkbox::make('maps_sidebar')->initial('0'),
 		);
 	}
+	public function cfgGoogle() { return $this->getConfigValue('maps_api_google'); }
 	public function cfgApiKey() { return $this->getConfigValue('maps_api_key'); }
 	public function cfgSensors() { return $this->getConfigValue('maps_sensors'); }
 	public function cfgRecord() { return $this->getConfigValue('maps_record'); }
@@ -40,14 +43,13 @@ final class Module_Maps extends GDO_Module
 	public function onIncludeScripts()
 	{
 		Javascript::addJavascript($this->googleMapsScriptURL());
-		if (module_enabled('Angular'))
+		if (module_enabled('Angular') && Application::instance()->hasTheme('material'))
 		{
-			$this->addJavascript('js/gwf-location-bar-ctrl.js');
-			$this->addJavascript('js/gwf-location-picker.js');
-			$this->addJavascript('js/gwf-map-util.js');
-			$this->addJavascript('js/gwf-position-ctrl.js');
-			$this->addJavascript('js/gwf-position-srvc.js');
-			
+			$this->addJavascript('js/material/gwf-location-bar-ctrl.js');
+			$this->addJavascript('js/material/gwf-location-picker.js');
+			$this->addJavascript('js/material/gwf-map-util.js');
+			$this->addJavascript('js/material/gwf-position-ctrl.js');
+			$this->addJavascript('js/material/gwf-position-srvc.js');
 			if ($this->cfgRecord())
 			{
 				$this->addJavascript('js/gdo-record-location.js');
@@ -75,9 +77,9 @@ final class Module_Maps extends GDO_Module
 	{
 		if ($this->cfgRecord())
 		{
-			return array(
+			return [
 				GDT_Position::make('user_position'),
-			);
+			];
 		}
 	}
 	
@@ -86,7 +88,7 @@ final class Module_Maps extends GDO_Module
 	############
 	public function onInitSidebar()
 	{
-// 	    if ($this->cfgSidebar())
+	    if ($this->cfgSidebar())
 	    {
 	        if (module_enabled('Angular'))
 	        {
