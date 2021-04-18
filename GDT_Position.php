@@ -45,8 +45,8 @@ final class GDT_Position extends GDT
 		
 	public function gdoColumnDefine()
 	{
-		$defaultLat = $this->initial[0] ? (" DEFAULT ".GDO::quoteS($this->initial[0])) : '';
-		$defaultLng = $this->initial[1] ? (" DEFAULT ".GDO::quoteS($this->initial[1])) : '';
+		$defaultLat = isset($this->initial[0]) ? (" DEFAULT ".GDO::quoteS($this->initial[0])) : '';
+		$defaultLng = isset($this->initial[1]) ? (" DEFAULT ".GDO::quoteS($this->initial[1])) : '';
 		return
 			"{$this->name}_lat DECIMAL(9,6){$this->gdoNullDefine()}{$defaultLat},\n".
 			"{$this->name}_lng DECIMAL(9,6){$this->gdoNullDefine()}{$defaultLng}";
