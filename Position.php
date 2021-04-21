@@ -67,7 +67,7 @@ final class Position
 	{
 		return
 		"(6371 * acos(cos(radians({$lat})) * cos(radians({$latColumn})) * cos(radians({$lngColumn}) ".
-		"- radians({$lng})) + sin(radians({$lat})) * sin(radians({$latColumn})))) AS distance";
+		"- radians({$lng})) + sin(radians({$lat})) * sin(radians({$latColumn}))))";
 	}
 	
 }
