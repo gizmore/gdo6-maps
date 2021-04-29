@@ -65,9 +65,14 @@ final class GDT_Position extends GDT
 	#############
 	### Value ###
 	#############
+	public function inputToVar($input)
+	{
+	    return "[$input]";
+	}
+	
 	public function toValue($var)
 	{
-		$coords = $var ? json_decode($var) : [null, null];
+		$coords = $var ? json_decode($var, true) : [null, null];
 		return new Position($coords[0], $coords[1]);
 	}
 	
