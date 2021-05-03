@@ -13,8 +13,9 @@ final class Position
 	public function isEmpty() { return $this->lat === null || $this->lng === null; }
 	public function getLat() { return $this->lat; }
 	public function getLng() { return $this->lng; }
-	public function displayLat() { return $this->lat . ($this->lat >= 0 ? '°N' : '°S'); }
-	public function displayLng() { return $this->lng . ($this->lng >= 0 ? '°E' : '°W'); }
+	public function displayLat() { return number_format($this->lat, 6) . ($this->lat >= 0 ? '°N' : '°S'); }
+	public function displayLng() { return number_format($this->lng, 6) . ($this->lng >= 0 ? '°E' : '°W'); }
+	public function displayRaw() { return $this->isEmpty() ? '' : sprintf('%.06f,%.06f', $this->lat, $this->lng); }
 	
 	##############
 	### Static ###
