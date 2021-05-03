@@ -2,7 +2,6 @@
 namespace GDO\Maps;
 
 use GDO\Core\GDO_Module;
-use GDO\Net\GDT_Url;
 use GDO\Core\GDT_Template;
 use GDO\DB\GDT_Checkbox;
 use GDO\Core\GDT_Secret;
@@ -14,9 +13,10 @@ use GDO\Core\Application;
  * Maps API helper.
  * 
  * @see GDT_Postion - A geolocation GDT.
+ * 
  * @author gizmore
- * @version 6.10
- * @since 4.0
+ * @version 6.10.1
+ * @since 4.0.0
  */
 final class Module_Maps extends GDO_Module
 {
@@ -26,13 +26,13 @@ final class Module_Maps extends GDO_Module
 	
 	public function getConfig()
 	{
-		return array(
+		return [
 		    GDT_Checkbox::make('maps_api_google')->initial('1'),
 			GDT_Secret::make('maps_api_key')->max(64)->initial(),
 			GDT_Checkbox::make('maps_sensors')->initial('0'),
 			GDT_Checkbox::make('maps_record')->initial('0'),
 			GDT_Checkbox::make('maps_sidebar')->initial('0'),
-		);
+		];
 	}
 	public function cfgGoogle() { return $this->getConfigValue('maps_api_google'); }
 	public function cfgApiKey() { return $this->getConfigValue('maps_api_key'); }
@@ -60,14 +60,14 @@ final class Module_Maps extends GDO_Module
 	
 	private function googleMapsScriptURL()
 	{
-		$protocol = GDT_Url::protocol();
 		$sensors = $this->cfgSensors() ? 'true' : 'false';
 		$apikey = $this->cfgApiKey();
 		if (!empty($apikey))
 		{
 			$apikey = '&key='.$apikey;
 		}
-		return sprintf('%s://maps.google.com/maps/api/js?sensors=%s%s', $protocol, $sensors, $apikey);
+		return sprintf('//maps.google.com/maps/api/js?sensors=%s%s',
+		    $sensors, $apikey);
 	}
 	
 	#################
