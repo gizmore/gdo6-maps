@@ -60,7 +60,7 @@ service('GDOLocationPicker', function($q, $mdDialog, GDOMapUtil) {
 		}
 		
 		$mdDialog.show({
-			templateUrl: window.GWF_WEB_ROOT + 'GDO/Maps/js/material/tpl/gwf-location-picker.html',
+			templateUrl: window.GDO_WEB_ROOT + 'GDO/Maps/js/material/tpl/gwf-location-picker.html',
 			locals: {
 				initPosition: initPosition,
 				text: text,

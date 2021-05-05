@@ -78,7 +78,8 @@ final class GDT_Position extends GDT
 	
 	public function toVar($value)
 	{
-		return json_encode([$value->getLat(), $value->getLng()]);
+	    return $value === null ? null : json_encode(
+	        [$value->getLat(), $value->getLng()]);
 	}
 	
 	public function initialLatLng($lat, $lng)
