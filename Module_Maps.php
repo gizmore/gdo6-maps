@@ -5,7 +5,7 @@ use GDO\Core\GDO_Module;
 use GDO\Core\GDT_Template;
 use GDO\DB\GDT_Checkbox;
 use GDO\Core\GDT_Secret;
-use GDO\Util\Javascript;
+use GDO\Javascript\Javascript;
 use GDO\UI\GDT_Page;
 use GDO\Core\Application;
 
