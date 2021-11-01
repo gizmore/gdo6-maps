@@ -42,17 +42,17 @@ final class Module_Maps extends GDO_Module
 	
 	public function onIncludeScripts()
 	{
-		Javascript::addJavascript($this->googleMapsScriptURL());
+		Javascript::addJS($this->googleMapsScriptURL());
 		if (module_enabled('Angular') && Application::instance()->hasTheme('material'))
 		{
-			$this->addJavascript('js/material/gwf-location-bar-ctrl.js');
-			$this->addJavascript('js/material/gwf-location-picker.js');
-			$this->addJavascript('js/material/gwf-map-util.js');
-			$this->addJavascript('js/material/gwf-position-ctrl.js');
-			$this->addJavascript('js/material/gwf-position-srvc.js');
+			$this->addJS('js/material/gwf-location-bar-ctrl.js');
+			$this->addJS('js/material/gwf-location-picker.js');
+			$this->addJS('js/material/gwf-map-util.js');
+			$this->addJS('js/material/gwf-position-ctrl.js');
+			$this->addJS('js/material/gwf-position-srvc.js');
 			if ($this->cfgRecord())
 			{
-				$this->addJavascript('js/gdo-record-location.js');
+				$this->addJS('js/gdo-record-location.js');
 			}
 		}
 		$this->addCSS('css/gwf-maps.css');
