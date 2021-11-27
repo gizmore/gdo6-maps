@@ -43,6 +43,14 @@ final class GDT_Position extends GDT
         ];
 	}
 		
+	public function gdoColumnNames()
+	{
+		return [
+			"{$this->name}_lat",
+			"{$this->name}_lng",
+		];
+	}
+	
 	public function gdoColumnDefine()
 	{
 		$defaultLat = isset($this->initial[0]) ? (" DEFAULT ".GDO::quoteS($this->initial[0])) : '';
