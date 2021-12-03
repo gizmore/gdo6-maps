@@ -55,6 +55,7 @@ final class Module_Maps extends GDO_Module
 				$this->addJS('js/gdo-record-location.js');
 			}
 		}
+		$this->addJS('js/gdo6-maps.js');
 		$this->addCSS('css/gwf-maps.css');
 	}
 	
