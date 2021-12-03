@@ -16,6 +16,8 @@ final class Position
 	public function displayLat() { return number_format($this->lat, 6) . ($this->lat >= 0 ? '°N' : '°S'); }
 	public function displayLng() { return number_format($this->lng, 6) . ($this->lng >= 0 ? '°E' : '°W'); }
 	public function displayRaw() { return $this->isEmpty() ? '' : sprintf('%.06f,%.06f', $this->lat, $this->lng); }
+	public function hasValidLat() { return self::isValidLat($this->lat); }
+	public function hasValidLng() { return self::isValidLng($this->lng); }
 	
 	##############
 	### Static ###

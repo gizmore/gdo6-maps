@@ -13,6 +13,8 @@ use GDO\DB\GDT_String;
  * Lat/Lng position GDT.
  * Adds two columns to a database table.
  * 
+ * @see Position
+ * 
  * @author gizmore
  * @version 6.11.0
  * @since 6.2.0
@@ -76,7 +78,8 @@ final class GDT_Position extends GDT_String
 	#############
 	public function inputToVar($input)
 	{
-	    return "[$input]";
+		$input = trim($input, "\r\n\t []");
+		return $input ? "[{$input}]" : null;
 	}
 	
 	public function toValue($var)
@@ -100,6 +103,7 @@ final class GDT_Position extends GDT_String
 	{
 		return $this->getValue()->getLat();
 	}
+
 	public function getLng()
 	{
 		return $this->getValue()->getLng();
@@ -125,11 +129,11 @@ final class GDT_Position extends GDT_String
 	##############
 	public function initJSON()
 	{
-		return array(
+		return [
 			'lat' => $this->getLat(),
 			'lng' => $this->getLng(),
 			'defaultCurrent' => $this->defaultCurrent,
-		);
+		];
 	}
 	public function renderForm()
 	{
@@ -149,8 +153,23 @@ final class GDT_Position extends GDT_String
 		{
 			return $this->notNull ? $this->errorNotNull() : true;
 		}
-		
-		return true;
+		return $this->validatePosition($value);
+	}
+	
+	private function validatePosition(Position $pos)
+	{
+		if (!$pos->hasValidLat())
+		{
+			return $this->error('err_latitude');
+		}
+		elseif (!$pos->hasValidLng())
+		{
+			return $this->error('err_longitude');
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 }

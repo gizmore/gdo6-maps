@@ -28,7 +28,7 @@ final class Module_Maps extends GDO_Module
 	{
 		return [
 		    GDT_Checkbox::make('maps_api_google')->initial('1'),
-			GDT_Secret::make('maps_api_key')->max(64)->initial(),
+			GDT_Secret::make('maps_api_key')->max(64)->initial(@include($this->filePath('apikey.php'))),
 			GDT_Checkbox::make('maps_sensors')->initial('0'),
 			GDT_Checkbox::make('maps_record')->initial('0'),
 			GDT_Checkbox::make('maps_sidebar')->initial('0'),
