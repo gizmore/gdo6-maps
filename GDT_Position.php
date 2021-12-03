@@ -3,20 +3,21 @@ namespace GDO\Maps;
 
 use GDO\Core\GDO;
 use GDO\Core\GDT_Template;
-use GDO\Core\GDT;
 use GDO\DB\WithDatabase;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
 use GDO\UI\WithIcon;
+use GDO\DB\GDT_String;
 
 /**
  * Lat/Lng position GDT.
  * Adds two columns to a database table.
+ * 
  * @author gizmore
- * @version 6.10
- * @since 6.02
+ * @version 6.11.0
+ * @since 6.2.0
  */
-final class GDT_Position extends GDT
+final class GDT_Position extends GDT_String
 {
 	use WithLabel;
 	use WithDatabase;

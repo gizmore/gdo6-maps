@@ -15,7 +15,7 @@ use GDO\Core\Application;
  * @see GDT_Postion - A geolocation GDT.
  * 
  * @author gizmore
- * @version 6.10.1
+ * @version 6.11.0
  * @since 4.0.0
  */
 final class Module_Maps extends GDO_Module
@@ -35,7 +35,7 @@ final class Module_Maps extends GDO_Module
 		];
 	}
 	public function cfgGoogle() { return $this->getConfigValue('maps_api_google'); }
-	public function cfgApiKey() { return $this->getConfigValue('maps_api_key'); }
+	public function cfgApiKey() { return $this->getConfigVar('maps_api_key'); }
 	public function cfgSensors() { return $this->getConfigValue('maps_sensors'); }
 	public function cfgRecord() { return $this->getConfigValue('maps_record'); }
 	public function cfgSidebar() { return $this->getConfigValue('maps_sidebar'); }
@@ -66,7 +66,7 @@ final class Module_Maps extends GDO_Module
 		{
 			$apikey = '&key='.$apikey;
 		}
-		return sprintf('//maps.google.com/maps/api/js?sensors=%s%s',
+		return sprintf('https://maps.google.com/maps/api/js?sensors=%s%s',
 		    $sensors, $apikey);
 	}
 	
