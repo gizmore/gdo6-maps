@@ -14,6 +14,6 @@ $field instanceof GDT_Position;
    <?=$field->htmlDisabled()?>
    size="12"
    <?=$field->htmlFormName()?>
-   value="<?= $field->displayVar(); ?>" />
+   value="<?= $field->display(); ?>" />
   <?= $field->htmlError(); ?>
 </div>
